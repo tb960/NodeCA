@@ -1,0 +1,25 @@
+{
+  "name": "nodeca",
+  "version": "0.0.1",
+  "description": "NodeJs-based CA implementation ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tb960/CA.git"
+  },
+  "keywords": [
+    "x509"
+  ],
+  "author": "Boon Khang",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tb960/CA/issues"
+  },
+  "homepage": "https://github.com/tb960/CA#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
