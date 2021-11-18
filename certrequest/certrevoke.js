@@ -5,11 +5,11 @@
 var http = require('http');
 var fs = require('fs');
 
-function requestCert(csrdata) {
+function revoketCert(csrdata) {
     var req = http.request({
         host: 'localhost',
         port: 8081,
-        path: '/certificate/request/',
+        path: '/certificate/revoke/',
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
@@ -46,9 +46,7 @@ function requestCert(csrdata) {
 //fs.readFile('/cert.csr', 'utf8', function(err, csrdata){
 fs.readFile('/Users/shivanikannan/CA_github/certrequest/cert.csr', 'utf8', function(err, csrdata){
     if(err == null) {
-        console.log(csrdata);
-        requestCert(csrdata); 
-        
+        revokeCert(csrdata);
     } else {
         console.log("Error reading file:" + err);
     }

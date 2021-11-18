@@ -9,7 +9,8 @@ var exec = require('child_process').exec;
 var certificate = {};
 
 certificate.request = function(req, res){
-    console.log("------\r\nZertifikatsanfrage von %s erhalten!", req.body.applicant);
+    console.log("------\r\nReceived a certificate request from %s!", req.body.data.applicant);
+    //console.log("req thing",req);
     csr = req.body.csr;
     console.log(csr);
     console.log("------\r\n\r\n");
@@ -56,6 +57,12 @@ certificate.request = function(req, res){
             });
         }
     });
+
+
+}
+
+certificate.revoke = function(req,res){
+
 
 
 }
