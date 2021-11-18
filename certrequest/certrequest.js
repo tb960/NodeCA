@@ -43,7 +43,8 @@ function requestCert(csrdata) {
 /*
  * Read cert data from file
  */
-fs.readFile('./cert.csr', 'utf8', function(err, csrdata){
+//fs.readFile('/cert.csr', 'utf8', function(err, csrdata){
+fs.readFile('/Users/shivanikannan/CA_github/certrequest/cert.csr', 'utf8', function(err, csrdata){
     if(err == null) {
         requestCert(csrdata);
     } else {

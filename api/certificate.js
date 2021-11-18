@@ -11,7 +11,7 @@ var certificate = {};
 certificate.request = function(req, res){
     console.log("------\r\nZertifikatsanfrage von %s erhalten!", req.body.applicant);
     csr = req.body.csr;
-    // console.log(csr);
+    console.log(csr);
     console.log("------\r\n\r\n");
 
     console.log("basepath: ", global.paths.basepath);
