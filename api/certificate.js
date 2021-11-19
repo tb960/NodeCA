@@ -10,8 +10,8 @@ var certificate = {};
 
 certificate.request = function(req, res){
     console.log("------\r\nReceived a certificate request from %s!", req.body.data.applicant);
-    //console.log("req thing",req);
-    csr = req.body.csr;
+    //console.log("the req thing",req);
+    csr = req.body.data.csr;
     console.log(csr);
     console.log("------\r\n\r\n");
 
@@ -19,8 +19,9 @@ certificate.request = function(req, res){
     console.log("pkipath: ", global.paths.pkipath);
     console.log("tempdir: ", global.paths.tempdir);
 
-    var signcommand = util.format('openssl ca -batch -config %sopenssl.cnf -extensions server_cert -days 1 -notext -md sha256 -in request.csr -key "%s" -out cert.pem', global.paths.pkipath, "jjdfhhk_348dsjj4JJhsk4j7svenjemHfen");
-
+    //var signcommand = util.format('openssl ca -batch -config %sopenssl.cnf -extensions server_cert -days 1 -notext -md sha256 -in request.csr -key "%s" -out cert.pem', global.paths.pkipath, "jjdfhhk_348dsjj4JJhsk4j7svenjemHfen");
+    //var signcommand = util.format('openssl ca -batch -config %sopenssl.cnf -notext -md sha256 -in %srequest.csr -key %sprivate/ca.key.pem -out cert.pem', global.paths.pkipath,global.paths.tempdir,global.paths.pkipath);
+    var signcommand = util.format('openssl x509 -req -in %srequest.csr -days 365 -CA %scerts/intermediate.cert.pem -CAkey %sprivate/ca.key.pem -set_serial 1 -out signed.crt -extfile %sopenssl-intermediate.conf -extensions v3_ca',global.paths.tempdir,global.paths.pkipath,global.paths.pkipath,global.paths.pkipath)
     // Write .csr file to tempdir
     fs.writeFile(global.paths.tempdir + 'request.csr', csr, function(err) {
         if(err) {
@@ -32,10 +33,10 @@ certificate.request = function(req, res){
                 if (error === null) {
                     console.log("openssl ca command successful.");
 
-                    // Generiertes Zertifikat einlesen
+                    // Read in generated certificate
                     fs.readFile(global.paths.tempdir + 'cert.pem', 'utf8', function(err, certdata){
                         if(err == null) {
-                            // Generiertes Zertifikat jetzt zurückschicken.
+                            //Send the generated certificate back now.
                             var response = {
                                 success: true,
                                 cert: certdata
@@ -61,11 +62,6 @@ certificate.request = function(req, res){
 
 }
 
-certificate.revoke = function(req,res){
-
-
-
-}
 
 
 module.exports = {
