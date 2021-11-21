@@ -20,8 +20,11 @@ certificate.request = function(req, res){
     console.log("tempdir: ", global.paths.tempdir);
 
     //var signcommand = util.format('openssl ca -batch -config %sopenssl.cnf -extensions server_cert -days 1 -notext -md sha256 -in request.csr -key "%s" -out cert.pem', global.paths.pkipath, "jjdfhhk_348dsjj4JJhsk4j7svenjemHfen");
-    //var signcommand = util.format('openssl ca -batch -config %sopenssl.cnf -notext -md sha256 -in %srequest.csr -key %sprivate/ca.key.pem -out cert.pem', global.paths.pkipath,global.paths.tempdir,global.paths.pkipath);
-    var signcommand = util.format('openssl x509 -req -in %srequest.csr -days 365 -CA %scerts/intermediate.cert.pem -CAkey %sprivate/ca.key.pem -set_serial 1 -out signed.crt -extfile %sopenssl-intermediate.conf -extensions v3_ca',global.paths.tempdir,global.paths.pkipath,global.paths.pkipath,global.paths.pkipath)
+    // change the key file to ascii format before the sign command
+    //$ iconv -c -f UTF8 -t ASCII ../private/ca.key.pem > key.pk8
+    // $ openssl rsa -in key.pk8 -out key.pem
+    var signcommand = util.format('openssl x509 -req -in %srequest.csr -days 365 -CA %scerts/ca.cert.pem -CAkey %sprivate/key.pem -set_serial 1 -out cert.pem -extfile %sopenssl.conf -extensions v3_ca',global.paths.tempdir,global.paths.pkipath,global.paths.pkipath,global.paths.pkipath)
+
     // Write .csr file to tempdir
     fs.writeFile(global.paths.tempdir + 'request.csr', csr, function(err) {
         if(err) {
@@ -58,6 +61,101 @@ certificate.request = function(req, res){
             });
         }
     });
+
+
+}
+var regex = /([R,E,V])(\t)(.*)(\t)(.*)(\t)([\dA-F]*)(\t)(unknown)(\t)(.*)/;
+
+var reindex = function() {
+    return new Promise(function(resolve, reject) {
+        console.log("Reindexing CertDB ...");
+
+        // open index file
+        var lineReader = require('readline').createInterface({
+            input: require('fs').createReadStream(global.paths.pkipath + 'index.txt')
+        });
+
+        certificates = [];
+
+        lineReader.on('line', function (line) {
+            // extract individual columns
+            var columns = regex.exec(line);
+
+            if(columns !== null){
+                var certificate = {
+                    state:   columns[1],
+                    expirationtime:    columns[3],
+                    revocationtime:     columns[5],
+                    serial:     columns[7],
+                    subject:    columns[11]
+                };
+
+                certificates.push(certificate);
+            } else {
+                log.error("Error while parsing index.txt line :(");
+            }
+        });
+
+        lineReader.on('close', function() {
+            console.log("Reindexing finished");
+
+            // Re-Create CRL
+            crl.createCRL();
+
+            resolve();
+        });
+    });
+}
+
+
+certificate.revoke = function(req,res){
+    console.log("------\r\nReceived a revocation request from %s!", req.body.data.applicant);
+    cert = req.body.data.cert;
+    name = req.body.data.name;
+    console.log(cert);
+    console.log("------\r\n\r\n");
+    //var revokecommand = util.format('openssl ca -config %sopenssl-intermediate.conf -revoke %snew_certs/cert.pem',global.paths.pkipath,global.paths.pkipath);
+   
+   
+
+    // Write .csr file to tempdir
+    fs.writeFile(global.paths.tempdir + 'cert.pem', cert, function(err) {
+        if(err) {
+            console.log("Could not write temp .pem file! Error: " + err);
+        } else {
+            console.log("Successfully wrote .pem file to tempdir.");
+
+            var revokecommand = util.format('openssl ca -config %sopenssl.conf -revoke cert.pem', global.paths.pkipath);
+            exec(revokecommand, { cwd: global.paths.tempdir }, function(error, stdout, stderr) {
+                if (error === null) {
+                    console.log("openssl revoke command successful");
+
+                    reindex().then(function(){
+                        console.log("Successfully revoked certificate.");
+
+                        reindex().then(function(){
+                            console.log("Successfully re-indexed CertDB.");
+
+                            respond({
+                                success: true
+                            }, res);
+
+                            resolve();
+                        })
+                        .catch(function(err){
+                            console.log("Could not re-index CertDB.");
+                        });
+                    });
+                } else {
+                    console.log("OpenSSL Error:\r\n", error);
+                    errorresponse({ code:101, message:"Internal server error."}, res);
+                    resolve();
+                }
+            });
+        } 
+    });
+        
+
 
 
 }
