@@ -1,0 +1,24 @@
+#header
+    #header-title
+        span NodePKI Webclient
+    #header-menu
+        ul
+            li
+                a(href=(baseurl + '/')) Home
+            li
+                a(href=(baseurl + '/cacerts')) CA Certs
+
+            if auth && auth.authed === true
+                li
+                    a(href=(baseurl + '/request')) Request certificate
+                li
+                    a(href=(baseurl + '/list')) Issued certificates
+                li
+                    a(href=(baseurl + '/revoke')) Revoke certificate
+    #header-login
+        if auth && auth.authed === true
+            | Logged in as #{auth.username}.&nbsp;
+            a(href=(baseurl + '/logout')) Log out.
+        else
+            span Not logged in.
+            a(href=(baseurl + '/')) Log in.

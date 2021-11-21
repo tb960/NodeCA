@@ -1,0 +1,44 @@
+doctype html
+html(lang="en")
+    include ./partials/head.pug
+
+    body
+        include ./partials/header.pug
+
+        #content
+            if success
+                h1 #{title}
+
+                h2 File downloads:
+
+                ul(style="list-style-type:none;")
+                    li
+                        a(href=rootdownload) Root CA Certificate
+                    li
+                        a(href=intermediatedownload) Intermediate CA Certificate
+
+                h2 Root CA certificate
+                #rootcert.cert(onclick="selectText('rootcert')")
+                    | #{content.rootcert}
+
+                h2 Intermediate CA certificate
+                #intermediatecert.cert(onclick="selectText('intermediatecert')")
+                    | #{content.intermediatecert}
+            else
+                p.banner.fail #{errormessage}
+
+
+        script.
+            function selectText(containerid) {
+                if (document.selection) {
+                    var range = document.body.createTextRange();
+                    range.moveToElementText(document.getElementById(containerid));
+                    range.select();
+                } else if (window.getSelection) {
+                    var range = document.createRange();
+                    range.selectNode(document.getElementById(containerid));
+                    window.getSelection().addRange(range);
+                }
+            }
+
+        include ./partials/foot.pug

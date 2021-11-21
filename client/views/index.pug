@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+    include ./partials/head.pug
+
+    body
+        include ./partials/header.pug
+
+        #content
+            if (login)
+                if(success)
+                    p.banner.success Login successful!
+                else
+                    p.banner.fail #{errormessage}
+
+            if (auth && auth.authed)
+                h1 Welcome to NodePKI-Webclient
+                p
+                    | With NodePKI-Webclient you can:
+                    ul
+                        li Download the root and intermediate certificate
+                        li Create new certificates
+                        li List issued certificates
+                        li Download issued certificates
+                        li Revoke certificates
+
+                p Please select an action from the top menu.
+            else
+                if reqlogin
+                    p.banner.fail You have to log in to continue
+                include ./partials/login.pug
+
+        include ./partials/foot.pug

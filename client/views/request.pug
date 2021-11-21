@@ -1,0 +1,185 @@
+doctype html
+html(lang="en")
+    include ./partials/head.pug
+
+    body
+        include ./partials/header.pug
+
+        #content
+            h1 #{title}
+
+            if content.state && content.state === 'submitted'
+                if success
+                    p.banner.success Your certificate has been issued! Congrats! :-)
+
+                    p
+                        a(href=(baseurl + '/request')) Request another certificate
+
+                    if content.key && content.key !== ''
+                        h2 Certificate key
+
+                        p.banner.warn
+                            | Save your certificate key NOW!
+                            br/
+                            | The certificate key is not stored on the server and therefore cannot be retrieved again!
+
+                        #key.cert(onclick="selectText('key')")
+                            | #{content.key}
+
+                    h2 Certificate
+                    #cert.cert(onclick="selectText('cert')")
+                        | #{content.cert}
+
+                    h2 Intermediate Certificate
+                    #intermediate.cert(onclick="selectText('intermediate')")
+                        | #{content.intermediatecert}
+
+
+                    script.
+                        function selectText(containerid) {
+                            if (document.selection) {
+                                var range = document.body.createTextRange();
+                                range.moveToElementText(document.getElementById(containerid));
+                                range.select();
+                            } else if (window.getSelection) {
+                                var range = document.createRange();
+                                range.selectNode(document.getElementById(containerid));
+                                window.getSelection().addRange(range);
+                            }
+                        }
+
+                else
+                    p.banner.fail
+                        | #{errormessage}
+
+            else
+                h3 Create a new certificate and certificate key
+
+                form(action=(baseurl + '/request') method="post")
+                    table.request(style="width:100%;" border="0")
+                        tr(style="text-align:left;height:50px;")
+                            th(style="min-width: 350px;") Attribute
+                            th Value
+                        tr
+                            td Certificate key passphase (optional)
+                            td
+                                input(type="password" name="key_passphrase")
+                        tr
+                            td Certificate type
+                            td
+                                select(name="certificate_type")
+                                    option(value="server") Server certificate (Webserver, ...)
+                                    option(value="client") Client certificate (OpenVPN Client, ... )
+                        tr
+                            td Two-letter country code
+                            td
+                                input(type="text" name="certificate_country" maxlength="2" value=csr_defaults.country)
+                        tr
+                            td State
+                            td
+                                input(type="text" name="certificate_state" value=csr_defaults.state maxlength="64")
+                        tr
+                            td Locality
+                            td
+                                input(type="text" name="certificate_locality" value=csr_defaults.locality maxlength="64")
+                        tr
+                            td Organization
+                            td
+                                input(type="text" name="certificate_organization" value=csr_defaults.organization maxlength="64")
+                        tr
+                            td CommonName
+                            td
+                                input(type="text" name="certificate_cname" maxlength="64" placeholder="domain.tld / userid")
+
+                        tr
+                            td
+                                | Subject Alternative Names (SAN) for server certificates.
+                                br/
+                                sub One (sub)domain per line.
+                            td
+                                textarea.requestform(name="certificate_san" style="height:100px;")
+
+                        tr
+                            td Lifetime (in days)
+                            td
+                                input(type="number" name="certificate_lifetime" value="365")
+
+                        tr
+                            td
+                                input(type="hidden" name="submitted" value="submitted_easyform")
+                            td
+                                input(type="submit" value="Request certificate")
+
+
+                h3 ... or submit a CSR in .pem format
+
+                form(action=(baseurl + '/request') method="post")
+                    table.request(style="width:100%;" border="0")
+                        tr(style="text-align:left;height:50px;")
+                            td
+                                | CSR in PEM format
+                            td
+                                textarea.requestform(name="csr" style="height:200px;")
+                        tr
+                            td
+                                | Certificate lifetime (in days)
+                            td
+                                input(type="number" name="certificate_lifetime" value="365")
+                        tr
+                            td
+                            td
+                                input(type="hidden" name="submitted" value="submitted_csr")
+                                input(type="submit" value="Request certificate")
+
+                .readmecontainer
+                    h2 How to create a CSR
+
+                    p
+                        | ▶ Make sure you have openssl installed on your system.
+
+                    p
+                        | ▶ Create a certificate key:
+                    pre
+                        | openssl genrsa -aes256 -out key.pem 2048
+                    p
+                        | ▶ Create an openssl.cnf configuration file with the following content:
+                    pre
+                        | [ req ]
+                        | default_bits        = 2048
+                        | distinguished_name  = req_distinguished_name
+                        | string_mask         = utf8only
+                        |
+                        | # SHA-1 is deprecated, so use SHA-2 instead.
+                        | default_md          = sha256
+                        |
+                        |
+                        | [ req_distinguished_name ]
+                        | countryName                     = Country Name (2 letter code)
+                        | stateOrProvinceName             = State or Province Name
+                        | localityName                    = Locality Name
+                        | 0.organizationName              = Organization Name
+                        | organizationalUnitName          = Organizational Unit Name
+                        | commonName                      = Common Name
+                        | emailAddress                    = Email Address
+                        |
+                        | # Optionally, specify some defaults.
+                        | countryName_default             = DE
+                        | stateOrProvinceName_default     = Bavaria
+                        | localityName_default            = Geisenhausen
+                        | 0.organizationName_default      = ADITO Software GmbH
+
+                    p
+                        | ▶ Create a certificate signing request (CSR):
+
+                    pre
+                        | openssl req -config openssl.cnf -key key.pem -new -sha256 -out csr.pem
+
+                    p
+                        | ▶ csr.pem contains your CSR.
+
+
+
+
+
+
+        include ./partials/foot.pug

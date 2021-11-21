@@ -1,0 +1,75 @@
+###
+### Server config: IP-Address and port to listen to.
+###
+
+server:
+    # E.g.: 0.0.0.0
+    ip: CA_API_SERVER_BIND_IP_ADDRESS
+    http:
+        # E.g.: ca.adito.local
+        domain: CA_API_SERVER_URL
+        # E.g.: 8080
+        port: CA_API_SERVER_PLAIN_PORT
+    ocsp:
+        # E.g.: ca.adito.local
+        domain: CA_OSCP_SERVER_URL
+        # E.g.: 2560
+        port: CA_OSCP_SERVER_PORT
+
+
+
+###
+### CA config: Passphrase for CA Key
+###
+
+ca:
+    root:
+        # E.g.: uDaMhCfFVcPJxZgkctKxKE2vYrwYHEnhcp
+        passphrase: ROOT_PASSPHRASE
+        # E.g.: 3650
+        days: CA_CERT_EXPIRE_IN_DAYS
+        # E.g.: DE
+        country: COUNTRY_CODE
+        # E.g.: Bavaria
+        state: STATE_NAME
+        # E.g.: Geisenhausen
+        locality: LOCALITY_NAME
+        # E.g.: ADITO Software GmbH
+        organization: ORGANIZATION_NAME
+        # E.g.: Root CA ADITO
+        commonname: ROOT_CA_COMMON_NAME
+    intermediate:
+        # E.g.: 4vhsDBWtnTXuUsQEBTSxZRKvAj2dKcn
+        passphrase: INTERMEDIATE_PASSPHRASE
+        # E.g.: 3650
+        days: CA_CERT_EXPIRE_IN_DAYS
+        # E.g.: DE
+        country: COUNTRY_CODE
+        # E.g.: Bavaria
+        state: STATE_NAME
+        # E.g.: Geisenhausen
+        locality: LOCALITY_NAME
+        # E.g.: ADITO Software GmbH
+        organization: ORGANIZATION_NAME
+        # E.g.: Intermediate CA ADITO
+        commonname: INTERMEDIATE_CA_COMMON_NAME
+        ocsp:
+            # E.g.: gpCnCFZuraQYtQaQNWs4apWK2W
+            passphrase: OCSP_PASSPHRASE
+            # E.g.: DE
+            country: COUNTRY_CODE
+            # E.g.: http://ca.adito.local:2560
+            url: CA_OSCP_SERVER_HTTP_URL
+        crl:
+            # E.g.: http://ca.adito.local:8080/public/ca/intermediate/crl
+            url: CA_CRL_SERVER_HTTP_URL
+
+
+###
+### Settings for end user certificates
+###
+cert:
+    # E.g.: 1
+    lifetime_default: CERT_MIN_LIFETIME_IN_DAYS
+    # E.g.: 365
+    lifetime_max: CERT_MAX_LIFETIME_IN_DAYS

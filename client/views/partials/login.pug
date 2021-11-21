@@ -1,0 +1,12 @@
+
+#loginwrapper
+    .logincontainer
+        form(method="post" action=(baseurl + '/'))
+            input(type="text" name="username" placeholder="Username" autofocus)
+            br/
+            input(type="password" name="password" placeholder="Password")
+
+            p
+                input(type="submit" value="Log in")
+    .logincontainer.note
+        p Use your NodeCA server login credentials to log in.

@@ -1,0 +1,43 @@
+doctype html
+html(lang="en")
+    include ./partials/head.pug
+
+    body
+        include ./partials/header.pug
+
+        #content
+            h1 #{title}
+
+            p
+                a.normal(href=(baseurl + '/list?state=all')) All
+                | &nbsp; &nbsp; &nbsp;
+                a.normal(href=(baseurl + '/list?state=valid')) Valid
+                | &nbsp; &nbsp; &nbsp;
+                a.normal(href=(baseurl + '/list?state=revoked')) Revoked
+                | &nbsp; &nbsp; &nbsp;
+                a.normal(href=(baseurl + '/list?state=expired')) Expired
+
+            p Click on the column headers to sort.
+
+            table#listtable
+                thead
+                    tr(style="text-align:left;")
+                        th Serial / Download
+                        th(data-sort-method="date" data-sort-default) Expiration date
+                        th(data-sort-method="date") Revocation date
+                        th Subject
+
+                
+                each cert in content.certs
+                    tr
+                        td
+                            a(href=cert.download) #{cert.serial}
+                        td #{cert.expirationtime}
+                        td #{cert.revocationtime}
+                        td #{cert.subject}
+
+        script.
+            new Tablesort(document.getElementById('listtable'));
+
+
+        include ./partials/foot.pug
