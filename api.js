@@ -34,6 +34,12 @@ var initAPI = function(app) {
         console.log("Client is requesting certificate %s", req.params.id);
         res.end("blablabla");
     });
+    /*
+     * REVOKE
+    */
+    app.post('/certificate/revoke/', function(req, res) {
+        certapi.certificate.revoke(req, res);
+    });
 
 };
 
