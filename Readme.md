@@ -75,7 +75,7 @@ B) 1) Product Requirement Document
 * Certificate Revocation Screen
 ![This is the Revoke page](/asset/revoke.png)
 * List of Certificate Screen
-![This is the List of Certificate page](/asset/list.png)
+![This is the List of Certificate page](/asset/listCert.png)
 
 
 #### Structure
