@@ -1,0 +1,16 @@
+##
+## Ignore NPM modules
+##
+
+node_modules/
+data/
+tmp/
+
+
+###
+### Dev test data
+###
+
+cert.csr
+cert.pem
+out/

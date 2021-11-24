@@ -1,0 +1,34 @@
+{
+  "name": "nodepki-client",
+  "version": "0.0.1",
+  "description": "A CLI client for NodePKI server",
+  "main": "client.js",
+  "scripts": {
+    "test": "echo \"There is no test.\" && exit 0;"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThomasLeister/nodepki-client.git"
+  },
+  "keywords": [
+    "PKI",
+    "CA",
+    "X.509",
+    "NodePKI"
+  ],
+  "author": "Thomas Leister <thomas.leister@mailbox.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThomasLeister/nodepki-client/issues"
+  },
+  "homepage": "https://github.com/ThomasLeister/nodepki-client#readme",
+  "dependencies": {
+      "fancy-log": "1.3.x",
+      "yargs": "6.6.x",
+      "js-yaml": "3.x",
+      "easy-table": "1.0.x",
+      "fs-extra": "2.0.x",
+      "readline-sync": "1.4.x",
+      "uuid": "3.0.x"
+  }
+}

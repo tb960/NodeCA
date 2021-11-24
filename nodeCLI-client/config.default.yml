@@ -1,0 +1,47 @@
+###
+### Hostnames and ports of the NodePKI server
+###
+
+server:
+    # E.g.: ca.adito.local
+    hostname: CA_API_SERVER_URL
+    # E.g.: 8080
+    port_plain: CA_API_SERVER_PLAIN_PORT
+    # E.g.: 443
+    port_tls: CA_API_SERVER_TLS_PORT
+    # E.g.: false
+    tls: CA_API_SERVER_TLS_ENABLED
+
+
+###
+### Username and password to authenticate with
+###
+
+user:
+    # E.g.: Thomas
+    username: API_USERNAME
+    # E.g.: my-super-secret-password
+    password: API_PASSWORD
+
+
+###
+### CSR default values
+###
+
+csr_defaults:
+    # E.g.: DE
+    country: COUNTRY_CODE
+    # E.g.: Bavaria
+    state: STATE_NAME
+    # E.g.: Geisenhausen
+    locality: LOCALITY_NAME
+    # E.g.: ADITO Software GmbH
+    organization: ORGANIZATION_NAME
+
+
+###
+### Default certificate lifetime
+###
+
+# E.g.: 365
+cert_lifetime_default: CERT_MAX_LIFETIME_IN_DAYS
