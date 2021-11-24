@@ -64,13 +64,56 @@ B) 1) Product Requirement Document
 # Design 
 
     1) UI mock up
-    2) file structure
-    3) 
+
+#### Structure
+
+```
+.. client::
+.
+|-- controllers         (where all the logic and request to server)                  
+|-- static              (static file used in front end setting)              
+|-- views               (front end code and structure)
+|   `-- partials        (front end reusable header or footer)          
+|-- data                (data file to store all your config, created when you first run the application)
+|-- temp                (temp file to store all the temporary received certificate)
+|-- app.js              (entry point of the application)             
+|-- appclient.js        (Javascript request file)        
+|-- config.default.yml  (default config file)          
+|-- openssl_client.cnf  (default openssl config client file)    
+|-- openssl_server.cnf  (default openssl config server file)            
+`-- rootcheck.js        (checking of root certificate function)  
+```
+
+```
+.. server::
+.
+|-- controllers         (where all the logic and request to server)
+|-- data                (data file to store all the root, intermediate and user cert)
+|   --- config
+|   --- mypki
+|   --- user.db         (where this store the user database to login using GUI)
+|-- middleware          (middleware function)
+|-- pkitemplate         (openssl config for all oscp, root, intermediate and clientcert)
+|-- temp                (temporary directory created while creating hierarchical and certificate)
+|-- api.js
+|-- cerdb.js            (directory for reindex for list of certificate and certificate status)
+|-- config.default.yml  (default config for the yml file)
+|-- crl.js              (logic to create certificate revocation list)
+|-- genpki.js           (run once when startup to create root and intermediate certificate folder and files)
+|-- nodepkictl.js       (logic to create a user using command line)
+|-- oscp-server.js
+|-- publicDI.js         (public logic for non admin user)
+`-- server.js           (server entry point)
+```
 
 
 # Use Of Code
 
-## A) Setup instructions
+## Requirements
+
+- Node.js 10 LTS (recommended)
+
+## Setup instructions
 
     git clone https://github.com/tb960/CA.git
     cd server
