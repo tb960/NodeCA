@@ -64,12 +64,18 @@ B) 1) Product Requirement Document
 # Design 
 
 #### UI MOCK UP
+* Login Screen
 ![This is the login page](/asset/login.png)
-![This is the home page](/asset/login.png)
-![This is the Root and Intermediate Cert page](/asset/login.png)
-![This is the Request page](/asset/login.png)
-![This is the Revoke page](/asset/login.png)
-![This is the List of Certificate page](/asset/login.png)
+* Home page Screen
+![This is the home page](/asset/home.png)
+* CA Root and Intermediate Screen
+![This is the Root and Intermediate Cert page](/asset/caCert.png)
+* Certificate request Screen
+![This is the Request page](/asset/request.png)
+* Certificate Revocation Screen
+![This is the Revoke page](/asset/revoke.png)
+* List of Certificate Screen
+![This is the List of Certificate page](/asset/list.png)
 
 
 #### Structure
