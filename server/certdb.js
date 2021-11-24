@@ -27,7 +27,6 @@ var reindex = function() {
         certificates = [];
 
         lineReader.on('line', function (line) {
-            // Regex auf diese Zeile anwenden, um einzelne Spalten zu gewinnen.
             var columns = regex.exec(line);
 
             if(columns !== null){
