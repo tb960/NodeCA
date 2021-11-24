@@ -70,43 +70,51 @@ B) 1) Product Requirement Document
 
 # Use Of Code
 
-## Setup instructions
+## A) Setup instructions
 
-    git clone https://github.com/aditosoftware/nodepki.git
-    cd nodepki
+    git clone https://github.com/tb960/CA.git
+    cd server
     npm install  
+    AFTER THAT, EXIT SERVER DIRECTORY 
+    cd client
+    npm install
 
 
-### Configure NodePKI
+### Configure NodeCA
 
 There is an example config file "config.yml.default" which can be copied to "config.yml". Change config.yml to fit your environment. The passwords defined in config.yml will be used to create the PKI.
+Please change the config file according to the example provided in the config.yml file, else the application will not run successfully
 
 
 ## Start all the things!
 
 Start your API server:
 
-    nodejs server.js
+    cd server
+    node server.js
 
-CA files in data/mypki will be created on first startup.
+Start you client server:
+
+    cd client
+    node app.js
+
+CA files in data/mypki will be created on first startup. Root Certificate and default Intermediate Certificate will be created on first startup if the data/mypki file is not found in the directory
 
 
 ## API user login
 
 ### Add new user
 
-    nodejs nodepkictl useradd --username user1 --password user1password
+    node nodepkictl useradd --username user1 --password user1password
 
 ### Remove user
 
-    nodejs nodepkictl userdel --username user1
+    node nodepkictl userdel --username user1
 
 
 ## API usage
 
-For information on how to use the API, read [API.md](/API.md)
 
 
-## Using the server via client
 
-Use [nodepki-client](https://github.com/aditosoftware/nodepki-client/) to request certificates and manage your PKI. If you prefer using a GUI, consider using [nodepki-webclient](https://github.com/aditosoftware/nodepki-webclient/).
+
