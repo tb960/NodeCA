@@ -61,6 +61,16 @@ B) 1) Product Requirement Document
    2) Software or technolofy stack used
    3) Software architecture and design
 
+#### Software architecture 
+* This is the software architecture used
+![This is the login page](/asset/architecture.jpeg)
+
+    1) Server is the server to handle request and to provide API for webClient user 
+    2) Unlike normal web application that use MySQL or MongoDB as database to store data, as this is a Certified Authority where everything need to be very secure, hence, it is better to use a self-server file system server where you store all your certificate and data in a file system in hashed format
+    3) In our case, we use an OCSP server to talk to the file system that have the data file for status of all certificate
+    4) We also have a Certification Revocation List HTTP server running for the update of revoked certificate
+    5) CRL is stored in .pem file.
+
 # Design 
 
 #### UI MOCK UP
