@@ -13,13 +13,13 @@ html(lang="en")
                     p.banner.fail #{errormessage}
 
             if (auth && auth.authed)
-                h1 Welcome to NodePKI-Webclient
+                h1 Welcome to NodeCA-Webclient
                 p
-                    | With NodePKI-Webclient you can:
+                    | With NodeCA-Webclient you can:
                     ul
                         li Download the root and intermediate certificate
-                        li Create new certificates
-                        li List issued certificates
+                        li Issue new certificates with CSR or without (If without CSR we will generate a private key for you!)
+                        li List/Validate issued certificates
                         li Download issued certificates
                         li Revoke certificates
 

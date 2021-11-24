@@ -63,7 +63,14 @@ B) 1) Product Requirement Document
 
 # Design 
 
-    1) UI mock up
+#### UI MOCK UP
+![This is the login page](/asset/login.png)
+![This is the home page](/asset/login.png)
+![This is the Root and Intermediate Cert page](/asset/login.png)
+![This is the Request page](/asset/login.png)
+![This is the Revoke page](/asset/login.png)
+![This is the List of Certificate page](/asset/login.png)
+
 
 #### Structure
 
@@ -106,12 +113,13 @@ B) 1) Product Requirement Document
 `-- server.js           (server entry point)
 ```
 
-
 # Use Of Code
 
 ## Requirements
 
 - Node.js 10 LTS (recommended)
+- NPM
+- OpenSSL
 
 ## Setup instructions
 
