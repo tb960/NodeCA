@@ -3,7 +3,7 @@
 ###
 
 server:
-    # E.g.: ca.adito.local
+    # E.g.: localhost
     hostname: CA_API_SERVER_URL
     # E.g.: 8080
     port_plain: CA_API_SERVER_PLAIN_PORT
@@ -18,9 +18,9 @@ server:
 ###
 
 user:
-    # E.g.: Thomas
+    # E.g.: User1
     username: API_USERNAME
-    # E.g.: my-super-secret-password
+    # E.g.: user1password
     password: API_PASSWORD
 
 
@@ -29,13 +29,13 @@ user:
 ###
 
 csr_defaults:
-    # E.g.: DE
+    # E.g.: SG
     country: COUNTRY_CODE
-    # E.g.: Bavaria
+    # E.g.: Singapore
     state: STATE_NAME
-    # E.g.: Geisenhausen
+    # E.g.: Singapore
     locality: LOCALITY_NAME
-    # E.g.: ADITO Software GmbH
+    # E.g.: Software NTU
     organization: ORGANIZATION_NAME
 
 

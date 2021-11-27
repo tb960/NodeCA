@@ -43,7 +43,6 @@ module.exports = function(req, res) {
 
             apiclient.request(global.apipath + '/certificates/list/', 'POST', pushdata).then(function(response) {
                 if(response.success && response.certs) {
-                    // Cert received from NodePKI server
                     log("Received certificate list.")
                     //console.log(response.certs);
                     page.content.certs = []

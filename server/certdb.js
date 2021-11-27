@@ -8,7 +8,7 @@ var crl     = require('./crl.js');
 
 certificates = new Array();
 
-// Sample: V	270129084423Z	270129084423Z	100E	unknown	/C=DE/ST=Germany/O=ADITO Software GmbH/OU=IT/CN=ADITO General Intermediate CA/emailAddress=it@adito.de
+// Sample: V	270129084423Z	270129084423Z	100E	unknown	/C=SG/ST=Singapore/O=Software NTU/OU=IT/CN=NTU General Intermediate CA/emailAddress=kh@gmail.com
 var regex = /([R,E,V])(\t)(.*)(\t)(.*)(\t)([\dA-F]*)(\t)(unknown)(\t)(.*)/;
 
 

@@ -6,12 +6,12 @@ server:
     # E.g.: 0.0.0.0
     ip: CA_API_SERVER_BIND_IP_ADDRESS
     http:
-        # E.g.: ca.adito.local
+        # E.g.: localhost
         domain: CA_API_SERVER_URL
         # E.g.: 8080
         port: CA_API_SERVER_PLAIN_PORT
     ocsp:
-        # E.g.: ca.adito.local
+        # E.g.: localhost
         domain: CA_OSCP_SERVER_URL
         # E.g.: 2560
         port: CA_OSCP_SERVER_PORT
@@ -24,44 +24,44 @@ server:
 
 ca:
     root:
-        # E.g.: uDaMhCfFVcPJxZgkctKxKE2vYrwYHEnhcp
+        # E.g.: hjdsghjkfgkafubsfhkgv
         passphrase: ROOT_PASSPHRASE
         # E.g.: 3650
         days: CA_CERT_EXPIRE_IN_DAYS
-        # E.g.: DE
+        # E.g.: SG
         country: COUNTRY_CODE
-        # E.g.: Bavaria
+        # E.g.: Singapore
         state: STATE_NAME
-        # E.g.: Geisenhausen
+        # E.g.: Singapore
         locality: LOCALITY_NAME
-        # E.g.: ADITO Software GmbH
+        # E.g.: Software NTU
         organization: ORGANIZATION_NAME
-        # E.g.: Root CA ADITO
+        # E.g.: Root CA NTU
         commonname: ROOT_CA_COMMON_NAME
     intermediate:
-        # E.g.: 4vhsDBWtnTXuUsQEBTSxZRKvAj2dKcn
+        # E.g.: agfdgddvsdgfvf
         passphrase: INTERMEDIATE_PASSPHRASE
         # E.g.: 3650
         days: CA_CERT_EXPIRE_IN_DAYS
-        # E.g.: DE
+        # E.g.: SG
         country: COUNTRY_CODE
-        # E.g.: Bavaria
+        # E.g.: Singapore
         state: STATE_NAME
-        # E.g.: Geisenhausen
+        # E.g.: Singapore
         locality: LOCALITY_NAME
-        # E.g.: ADITO Software GmbH
+        # E.g.: Software NTU
         organization: ORGANIZATION_NAME
-        # E.g.: Intermediate CA ADITO
+        # E.g.: Intermediate CA NTU
         commonname: INTERMEDIATE_CA_COMMON_NAME
         ocsp:
             # E.g.: gpCnCFZuraQYtQaQNWs4apWK2W
             passphrase: OCSP_PASSPHRASE
-            # E.g.: DE
+            # E.g.: SG
             country: COUNTRY_CODE
-            # E.g.: http://ca.adito.local:2560
+            # E.g.: http://localhost:2560
             url: CA_OSCP_SERVER_HTTP_URL
         crl:
-            # E.g.: http://ca.adito.local:8080/public/ca/intermediate/crl
+            # E.g.: http://localhost:8080/public/ca/intermediate/crl
             url: CA_CRL_SERVER_HTTP_URL
 
 

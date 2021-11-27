@@ -1,8 +1,6 @@
 /*
  * API endpoint
  *
- * To DO:
- * Extend error handling!
  */
 
 var util = require('util');

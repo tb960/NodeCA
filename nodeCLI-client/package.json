@@ -1,27 +1,19 @@
 {
-  "name": "nodepki-client",
+  "name": "nodeCLI-client",
   "version": "0.0.1",
-  "description": "A CLI client for NodePKI server",
+  "description": "A CLI client for NodeCA server",
   "main": "client.js",
   "scripts": {
     "test": "echo \"There is no test.\" && exit 0;"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ThomasLeister/nodepki-client.git"
-  },
+
   "keywords": [
     "PKI",
     "CA",
-    "X.509",
-    "NodePKI"
+    "X.509"
   ],
-  "author": "Thomas Leister <thomas.leister@mailbox.org>",
+  "author": "Boon Khang",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/ThomasLeister/nodepki-client/issues"
-  },
-  "homepage": "https://github.com/ThomasLeister/nodepki-client#readme",
   "dependencies": {
       "fancy-log": "1.3.x",
       "yargs": "6.6.x",

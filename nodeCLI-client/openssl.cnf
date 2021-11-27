@@ -17,7 +17,7 @@ commonName                      = Common Name
 emailAddress                    = Email Address
 
 # Optionally, specify some defaults.
-countryName_default             = DE
-stateOrProvinceName_default     = Deutschland
-localityName_default            = Geisenhausen
-0.organizationName_default      = ADITO Software GmbH
+countryName_default             = SG
+stateOrProvinceName_default     = Singapore
+localityName_default            = Singapore
+0.organizationName_default      = Software NTU
