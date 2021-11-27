@@ -583,6 +583,20 @@ Get intermediate certificate + root certificate (=cert chain) and write to file:
     node client getcacert --ca intermediate --chain --out out/ca-chain.cert.pem
 
 
+## Contribution
+
+For Shivani Part, refer to commit history on branch: main
+1) https://github.com/tb960/NodeCA/commit/80c11f4447185747d604a2d6c62114c83c0b7add
+2) https://github.com/tb960/NodeCA/commit/ce33634f55a61638cd2595c6bcb59866fac675cb
+3) https://github.com/tb960/NodeCA/commit/189e16997cba67fb130134f32d13591533c597ff
+4) https://github.com/tb960/NodeCA/commit/e429b458df4cd8e28dfa8174a8e7a75d5677c4b0
+5) https://github.com/tb960/NodeCA/commit/8213e91bc659fa4592cd2a3f60e4096746132ce6
+
+All the code (frontend and backend) and detailed readme.md file from branch: master are contributed by Teo Boon Khang
+Detail Demo of the application had been uploaded and explained in the 10-minutes demo video.
+
+
+
 
 
 
