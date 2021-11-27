@@ -68,8 +68,14 @@ html(lang="en")
                             td Certificate type
                             td
                                 select(name="certificate_type")
-                                    option(value="server") Server certificate (Webserver, ...)
-                                    option(value="client") Client certificate (OpenVPN Client, ... )
+                                    option(value="client") Client certificate (OpenVPN Client, ...)
+                                    option(value="server") Intermediate certificate (Webserver, ... )
+                        tr 
+                            td Signing Certificate
+                            td 
+                                select(name="null")
+                                    option(value="default") Default
+                                    option(value="default") intermediate
                         tr
                             td Two-letter country code
                             td
@@ -120,6 +126,11 @@ html(lang="en")
                                 | CSR in PEM format
                             td
                                 textarea.requestform(name="csr" style="height:200px;")
+                        tr 
+                            td Signing Certificate
+                            td 
+                                select(name="null")
+                                    option(value="default") Default
                         tr
                             td
                                 | Certificate lifetime (in days)

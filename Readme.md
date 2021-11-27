@@ -205,18 +205,6 @@ Extra features:
    2) CRL HTTP SERVER
    3) Download issued certificate files
 
-Requirement flow:
-   1) Issuing/hierarchical issuing a new Certificate  - user story
-   ![This is the login page](/asset/login.png)
-   2) hierarchical Revocation of certificate - admin story
-   ![This is the login page](/asset/login.png)
-   3) validate list of certificate - user/admin story
-   ![This is the login page](/asset/login.png)
-   4) generate private key if user ask
-   ![This is the login page](/asset/login.png)
-   5) generate certificate based on user CSR
-   ![This is the login page](/asset/login.png)
-
 
 #### Technology stacks used
 ```

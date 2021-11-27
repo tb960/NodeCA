@@ -35,7 +35,7 @@ var reindex = function() {
                     expirationtime:    columns[3],
                     revocationtime:     columns[5],
                     serial:     columns[7],
-                    subject:    columns[11]
+                    subject:    columns[11] + "/IN:Default",
                 };
 
                 certificates.push(certificate);
