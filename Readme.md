@@ -592,8 +592,8 @@ For Shivani Part, refer to commit history on branch: main
 4) https://github.com/tb960/NodeCA/commit/e429b458df4cd8e28dfa8174a8e7a75d5677c4b0
 5) https://github.com/tb960/NodeCA/commit/8213e91bc659fa4592cd2a3f60e4096746132ce6
 
-All the code (frontend and backend) and detailed readme.md file from branch: master are contributed by Teo Boon Khang
-Detail Demo of the application had been uploaded and explained in the 10-minutes demo video.
+* All the code (frontend and backend) and detailed readme.md file from branch: master are contributed by Teo Boon Khang
+* Detailed Demo of the application had been uploaded and explained in the 10-minutes demo video.
 
 
 
